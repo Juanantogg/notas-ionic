@@ -1,0 +1,7 @@
+{
+  "name": "notas-ionic-beta-cordova",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

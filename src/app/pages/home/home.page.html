@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color='primary'>
+    <ion-title>
+      App de tareas
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Ver</ion-label>
+      <ion-select [(ngModel)]="verTareas" name="verTareas">
+        <ion-select-option value="todas" selected>Todas</ion-select-option>
+        <ion-select-option value="completadas">Completadas</ion-select-option>
+        <ion-select-option value="pendientes">Pendientes</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+
+    <ion-fab-button mini color="dark" (click)="agregar()">
+
+      <ion-icon ios="ios-add" md="md-add"></ion-icon>
+
+    </ion-fab-button>
+
+  </ion-fab>
+
+  <ion-list>
+
+    <ion-list-header  color='dark'>
+      <ion-label> Tareas:
+
+        <small> {{ verTareas | titlecase }}</small>
+
+      </ion-label>
+    </ion-list-header>
+
+    <ion-item-group>
+
+      <ion-item *ngFor="let tarea of tareas | separadorTareas:verTareas ; let i = index">
+
+        <ion-toggle (ionChange)="completar(tarea)" item-start color="secondary" [checked]="tarea.data.completada">
+        </ion-toggle>
+
+        <ion-label>{{ tarea.data.tarea }}</ion-label>
+
+        <ion-button (click)="eliminarTarea(tarea.id)" shape="round" fill="outline" color="danger">
+          <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+        </ion-button>
+
+      </ion-item>
+
+    </ion-item-group>
+
+  </ion-list>
+
+</ion-content>

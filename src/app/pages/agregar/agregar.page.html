@@ -1,0 +1,62 @@
+<ion-header>
+
+  <ion-toolbar color="primary">
+
+    <ion-button float-left fill="clear" color="light" (click)="regresar()">
+      <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
+    </ion-button>
+
+    <ion-label>
+      <ion-title>
+        Nueva tarea
+      </ion-title>
+    </ion-label>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-row>
+
+    <ion-item>
+      <ion-label position="floating">Tarea</ion-label>
+      <ion-input (keyup.enter)="agregarTarea(nombreTarea)" #nombreTarea type="text"></ion-input>
+    </ion-item>
+
+    <ion-col size='12' padding>
+      <ion-button float-end small (click)="agregarTarea(nombreTarea)" color="primary">Agregar tarea</ion-button>
+    </ion-col>
+
+  </ion-row>
+
+
+  <ion-card *ngIf="tareas.length > 0">
+
+    <ion-card-header color="secondary" no-padding padding-start padding-top>
+      <ion-card-title >Notas nuevas</ion-card-title>
+    </ion-card-header>
+
+
+    <ion-card-content>
+
+      <ion-list>
+
+        <ion-item justify-content-between *ngFor="let tarea of tareas;">
+
+          <ion-label> {{ tarea.data['tarea'] }} </ion-label>
+
+          <ion-button item-end (click)="eliminarTarea(tarea.id)" shape="round" fill="outline" color="danger">
+            <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+          </ion-button>
+
+        </ion-item>
+
+      </ion-list>
+
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>
